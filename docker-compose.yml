@@ -1,0 +1,20 @@
+version: '2'
+services:
+  sinatra:
+    build: https://github.com/mrpatiwi/ACID-webservice2.git
+    environment:
+      - RACK_ENV=production
+
+  rails:
+    build: https://github.com/mrpatiwi/ACID-webservice1.git
+    ports:
+      - 80:3000
+    environment:
+      - SECRET_KEY_BASE
+      - EMAIL_USERNAME
+      - EMAIL_PASSWORD
+      - EMAIL_DOMAIN
+      - SERVICE_URI=http://sinatra:3000
+      - RAILS_ENV=production
+      - RAILS_SERVE_STATIC_FILES=true
+      # - RAILS_LOG_TO_STDOUT=true
